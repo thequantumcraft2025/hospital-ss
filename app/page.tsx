@@ -1,4 +1,6 @@
-import Link from "next/link"
+"use client";
+import Link from "next/link";
+import Image from "next/image";
 import {
   Phone,
   Calendar,
@@ -13,23 +15,33 @@ import {
   Video,
   ArrowRight,
   CheckCircle,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { CountUp } from "@/components/ui/CountUp";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useEffect, useState } from "react";
 
 const services = [
   {
     icon: Siren,
     title: "Emergency Care",
-    description: "24/7 emergency services with rapid response teams and advanced life support.",
+    description:
+      "24/7 emergency services with rapid response teams and advanced life support.",
     href: "/departments/emergency",
   },
   {
     icon: Stethoscope,
     title: "Outpatient Services",
-    description: "Comprehensive consultations with specialists across all departments.",
+    description:
+      "Comprehensive consultations with specialists across all departments.",
     href: "/departments",
   },
   {
@@ -41,29 +53,32 @@ const services = [
   {
     icon: Heart,
     title: "Cardiology",
-    description: "Advanced cardiac care including angiography, PCI, and heart failure management.",
+    description:
+      "Advanced cardiac care including angiography, PCI, and heart failure management.",
     href: "/departments/cardiology",
   },
   {
     icon: Baby,
     title: "Maternity Care",
-    description: "Complete maternity services from prenatal care to delivery and postnatal support.",
+    description:
+      "Complete maternity services from prenatal care to delivery and postnatal support.",
     href: "/departments/maternity",
   },
   {
     icon: Video,
     title: "Teleconsultation",
-    description: "Virtual consultations with our specialists from the comfort of your home.",
+    description:
+      "Virtual consultations with our specialists from the comfort of your home.",
     href: "/contact",
   },
-]
+];
 
 const stats = [
-  { icon: Clock, value: "15+", label: "Years of Service" },
-  { icon: Building, value: "100+", label: "Beds Capacity" },
-  { icon: Users, value: "50+", label: "Expert Doctors" },
-  { icon: Stethoscope, value: "24/7", label: "Emergency Care" },
-]
+  { icon: Clock, value: 15, suffix: "+", label: "Years of Service" },
+  { icon: Building, value: 100, suffix: "+", label: "Beds Capacity" },
+  { icon: Users, value: 50, suffix: "+", label: "Expert Doctors" },
+  { icon: Stethoscope, value: 24, suffix: "/7", label: "Emergency Care" },
+];
 
 const features = [
   "Advanced Medical Equipment",
@@ -72,32 +87,73 @@ const features = [
   "Affordable Treatment",
   "Modern Facilities",
   "Emergency Response",
-]
+];
+
+const images = [
+  "/images/hospitals/kafeel.png",
+  "/images/hospitals/hospital2.jpg",
+  "/images/hospitals/hospital3.jpg",
+];
 
 export default function HomePage() {
+  const [index, setIndex] = useState(0);
+  const [offset, setOffset] = useState(0);
+
+  // Image auto change
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Parallax scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setOffset(window.scrollY * 0.3); // parallax speed
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
     <div className="min-h-screen">
       {/* Hero Section with Parallax */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Parallax Background */}
-        <div
-          className="absolute inset-0 parallax"
-          style={{
-            backgroundImage: "url('/images/hospitals/kafeel.png')",
-          }}
-        />
+        {/* Background Images */}
+        {images.map((img, i) => (
+          <div
+            key={i}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              i === index ? "opacity-100" : "opacity-0"
+            }`}
+            style={{
+              backgroundImage: `url(${img})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              transform: `translateY(${offset}px)`,
+              willChange: "transform",
+            }}
+          />
+        ))}
+
+        {/* Dark Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/70 to-charcoal/50" />
 
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
           <div className="max-w-3xl">
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight text-balance">
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               SS Hospital, Hosur — Compassionate Care. Modern Medicine.
             </h1>
-            <p className="text-xl text-white/90 mb-8 leading-relaxed">
-              Multispeciality hospital delivering advanced treatments with a patient-first approach. Emergency care |
-              Expert doctors | 24/7 support.
+
+            <p className="text-xl text-white/90 mb-8">
+              Multispeciality hospital delivering advanced treatments with a
+              patient-first approach. Emergency care | Expert doctors | 24/7
+              support.
             </p>
+
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/contact">
                 <Button
@@ -108,6 +164,7 @@ export default function HomePage() {
                   Book an Appointment
                 </Button>
               </Link>
+
               <a href="tel:+91 94425 99330">
                 <Button
                   size="lg"
@@ -135,14 +192,17 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="text-teal font-medium text-sm uppercase tracking-wider">Welcome to SS Hospital</span>
+              <span className="text-teal font-medium text-sm uppercase tracking-wider">
+                Welcome to SS Hospital
+              </span>
               <h2 className="font-serif text-3xl sm:text-4xl font-bold text-charcoal mt-3 mb-6 text-balance">
                 Your Trusted Healthcare Partner in Hosur
               </h2>
               <p className="text-charcoal-light leading-relaxed mb-6">
-                SS Hospital is a full-service multispeciality hospital in Hosur offering cardiac, orthopaedic,
-                maternity, and diagnostic care with round-the-clock emergency services. Our experienced team delivers
-                evidence-based treatment in a caring environment.
+                SS Hospital is a full-service multispeciality hospital in Hosur
+                offering cardiac, orthopaedic, maternity, and diagnostic care
+                with round-the-clock emergency services. Our experienced team
+                delivers evidence-based treatment in a caring environment.
               </p>
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {features.map((feature) => (
@@ -188,13 +248,15 @@ export default function HomePage() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="text-teal font-medium text-sm uppercase tracking-wider">Our Services</span>
+            <span className="text-teal font-medium text-sm uppercase tracking-wider">
+              Our Services
+            </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-charcoal mt-3 mb-4 text-balance">
               Comprehensive Healthcare Services
             </h2>
             <p className="text-charcoal-light max-w-2xl mx-auto">
-              From emergency care to specialized treatments, we offer a full range of medical services tailored to meet
-              your healthcare needs.
+              From emergency care to specialized treatments, we offer a full
+              range of medical services tailored to meet your healthcare needs.
             </p>
           </div>
 
@@ -202,18 +264,37 @@ export default function HomePage() {
             {services.map((service, index) => (
               <Card
                 key={service.title}
-                className="group bg-white border-0 shadow-md hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden animate-fade-in-up"
+                className="group relative bg-white border-0 rounded-2xl overflow-hidden
+                 shadow-md hover:shadow-xl transition-all duration-300
+                 animate-fade-in-up cursor-pointer"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <CardContent className="p-6">
-                  <div className="w-14 h-14 bg-teal/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-teal group-hover:text-white transition-colors">
-                    <service.icon className="h-7 w-7 text-teal group-hover:text-white transition-colors" />
+                {/* Gradient Hover Overlay */}
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300
+                      bg-gradient-to-br from-sky-100/70 via-sky-200/50 to-blue-200/60 "
+                />
+
+                <CardContent className="relative z-10 p-6">
+                  <div
+                    className="w-14 h-14 bg-sky-100 rounded-xl flex items-center justify-center mb-4
+                        group-hover:bg-sky-500 transition-colors"
+                  >
+                    <service.icon className="h-7 w-7 text-sky-600 group-hover:text-white transition-colors" />
                   </div>
-                  <h3 className="font-serif text-xl font-bold text-charcoal mb-2">{service.title}</h3>
-                  <p className="text-charcoal-light text-sm mb-4 leading-relaxed">{service.description}</p>
+
+                  <h3 className="font-serif text-xl font-bold text-charcoal mb-2">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-charcoal-light text-sm mb-4 leading-relaxed">
+                    {service.description}
+                  </p>
+
                   <Link
                     href={service.href}
-                    className="inline-flex items-center text-teal font-medium text-sm hover:text-teal-dark transition-colors"
+                    className="inline-flex items-center text-sky-600 font-medium text-sm
+                     hover:text-sky-700 transition-colors"
                   >
                     Learn More
                     <ArrowRight className="h-4 w-4 ml-1" />
@@ -234,7 +315,11 @@ export default function HomePage() {
                 <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <stat.icon className="h-8 w-8 text-white" />
                 </div>
-                <p className="font-serif text-4xl font-bold text-white mb-1">{stat.value}</p>
+
+                <p className="font-serif text-4xl font-bold text-white mb-1">
+                  <CountUp value={stat.value} suffix={stat.suffix} />
+                </p>
+
                 <p className="text-white/80 text-sm">{stat.label}</p>
               </div>
             ))}
@@ -243,14 +328,18 @@ export default function HomePage() {
       </section>
 
       {/* Appointment Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gradient-to-br from-slate-100 to-sky-200 rounded rounded-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-charcoal rounded-3xl overflow-hidden">
             <div className="grid lg:grid-cols-2">
               {/* Form */}
               <div className="p-8 lg:p-12">
-                <span className="text-coral font-medium text-sm uppercase tracking-wider">Book Now</span>
-                <h2 className="font-serif text-3xl font-bold text-white mt-3 mb-6">Schedule Your Appointment</h2>
+                <span className="text-coral font-medium text-sm uppercase tracking-wider">
+                  Book Now
+                </span>
+                <h2 className="font-serif text-3xl font-bold text-white mt-3 mb-6">
+                  Schedule Your Appointment
+                </h2>
                 <form className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <Input
@@ -275,7 +364,10 @@ export default function HomePage() {
                       <SelectItem value="emergency">Emergency</SelectItem>
                     </SelectContent>
                   </Select>
-                  <Input type="date" className="bg-white/10 border-white/20 text-white rounded-xl" />
+                  <Input
+                    type="date"
+                    className="bg-white/10 border-white/20 text-white rounded-xl"
+                  />
                   <Button className="w-full bg-coral hover:bg-coral-dark text-white rounded-xl text-lg py-6">
                     Book Appointment
                   </Button>
@@ -297,14 +389,33 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-off-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-charcoal mb-4 text-balance">
+
+      <section className="relative py-20 overflow-hidden bg-off-white">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/hospitals/kafeel.png"
+            alt="Hospital background"
+            fill
+            priority
+            className="object-cover opacity-80"
+          />
+
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-white/60" />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-charcoal mb-4">
             Need Immediate Assistance?
           </h2>
+
           <p className="text-charcoal-light max-w-2xl mx-auto mb-8">
-            Our emergency team is available 24/7. Don't hesitate to reach out for any medical emergencies.
+            Our emergency team is available 24/7. Don&apos;t hesitate to reach
+            out for any medical emergencies.
           </p>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="tel:+9194425-99330">
               <Button
@@ -315,6 +426,7 @@ export default function HomePage() {
                 Call Emergency Now
               </Button>
             </a>
+
             <Link href="/doctors">
               <Button
                 size="lg"
@@ -328,5 +440,5 @@ export default function HomePage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

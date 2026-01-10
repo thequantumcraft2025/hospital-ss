@@ -10,17 +10,50 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" })
 
+// export const metadata: Metadata = {
+//   title: "SS Hospital, Hosur — Multispeciality Care & 24/7 Emergency",
+//   description:
+//     "SS Hospital Hosur offers advanced care across cardiology, orthopaedics, maternity, and diagnostics. Book an appointment today.",
+//   openGraph: {
+//     title: "SS Hospital, Hosur — Multispeciality Care & 24/7 Emergency",
+//     description: "SS Hospital Hosur offers advanced care across cardiology, orthopaedics, maternity, and diagnostics.",
+//     type: "website",
+//   },
+//     generator: 'v0.app'
+// }
+
 export const metadata: Metadata = {
-  title: "SS Hospital, Hosur — Multispeciality Care & 24/7 Emergency",
+  title: {
+    default: "SS Hospital, Hosur — Multispeciality Care & 24/7 Emergency",
+    template: "%s | SS Hospital Hosur",
+  },
   description:
     "SS Hospital Hosur offers advanced care across cardiology, orthopaedics, maternity, and diagnostics. Book an appointment today.",
+
+  icons: {
+    icon: "/images/logo.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+
   openGraph: {
     title: "SS Hospital, Hosur — Multispeciality Care & 24/7 Emergency",
-    description: "SS Hospital Hosur offers advanced care across cardiology, orthopaedics, maternity, and diagnostics.",
+    description:
+      "SS Hospital Hosur offers advanced care across cardiology, orthopaedics, maternity, and diagnostics.",
     type: "website",
+    images: [
+      {
+        url: "/images/hospital-hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "SS Hospital Hosur",
+      },
+    ],
   },
-    generator: 'v0.app'
+
+  generator: "v0.app",
 }
+
 
 export default function RootLayout({
   children,

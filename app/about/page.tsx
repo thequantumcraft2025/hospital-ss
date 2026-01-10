@@ -133,7 +133,7 @@ export default function AboutPage() {
       </section>
 
       {/* History Timeline */}
-      <section className="py-16 bg-background">
+       <section className="py-20 bg-gradient-to-br from-slate-100 to-sky-200 rounded rounded-5">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-serif font-bold text-center text-foreground mb-12">Our Journey</h2>
           <div className="max-w-3xl mx-auto">
@@ -153,14 +153,17 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+     
+
+
 
       {/* Values */}
-      <section className="py-16 bg-muted/30">
+      {/* <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-serif font-bold text-center text-foreground mb-12">Our Core Values</h2>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto">
             {values.map((value, index) => (
-              <Card key={index} className="border-0 shadow-md hover:shadow-xl transition-shadow">
+              <Card key={index} className="group border-0 shadow-md hover:shadow-xl transition-shadow">
                 <CardContent className="p-6 text-center">
                   <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                     <value.icon className="w-7 h-7 text-primary" />
@@ -172,10 +175,39 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+      <section className="py-16 bg-muted/30">
+  <div className="container mx-auto px-4">
+    <h2 className="text-3xl font-serif font-bold text-center text-foreground mb-12">
+      Our Core Values
+    </h2>
+
+    <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto">
+      {values.map((value, index) => (
+        <Card
+          key={index}
+          className="group border-0 shadow-md rounded-2xl transition-all duration-300 hover:shadow-xl hover:scale-105 hover:bg-gradient-to-br hover:from-primary/20 hover:via-primary/10 hover:to-primary/5"
+        >
+          <CardContent className="p-6 text-center transition-colors duration-300">
+            <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 transition-colors duration-300 group-hover:bg-primary group-hover:text-white">
+              <value.icon className="w-7 h-7 text-primary group-hover:text-white transition-colors duration-300" />
+            </div>
+            <h3 className="font-semibold text-foreground mb-2 group-hover:text-primary-dark transition-colors duration-300">
+              {value.title}
+            </h3>
+            <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+              {value.description}
+            </p>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* CTA Section */}
-      <section className="py-16 bg-primary text-primary-foreground">
+      {/* <section className="py-16 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-serif font-bold mb-4">Experience Our Care</h2>
           <p className="mb-8 max-w-xl mx-auto">Meet our expert doctors and explore our world-class departments.</p>
@@ -193,7 +225,31 @@ export default function AboutPage() {
             </Button>
           </div>
         </div>
-      </section>
+      </section> */}
+      <section className="py-16 bg-gradient-to-r from-primary/90 via-primary/80 to-teal-600 text-primary-foreground">
+  <div className="container mx-auto px-4 text-center">
+    <h2 className="text-3xl font-serif font-bold mb-4">
+      Experience Our Care
+    </h2>
+    <p className="mb-8 max-w-xl mx-auto">
+      Meet our expert doctors and explore our world-class departments.
+    </p>
+    <div className="flex flex-wrap gap-4 justify-center">
+      <Button asChild size="lg" variant="secondary">
+        <Link href="/doctors">Meet Our Doctors</Link>
+      </Button>
+      <Button
+        asChild
+        size="lg"
+        variant="outline"
+        className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-white bg-transparent"
+      >
+        <Link href="/departments">View Departments</Link>
+      </Button>
+    </div>
+  </div>
+</section>
+
     </main>
   )
 }

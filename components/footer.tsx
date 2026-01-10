@@ -24,16 +24,30 @@ const departments = [
 
 export function Footer() {
   return (
-    <footer className="bg-charcoal text-white">
+  //  <footer className="relative text-white bg-gradient-to-br from-charcoal via-charcoal/95 to-teal-900">
+<footer className="relative text-white bg-gradient-to-br from-[#1f1f23] via-[#2a2e37] to-[#0e7c83]"> 
+
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* About */}
           <div>
             <div className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 bg-teal rounded-xl flex items-center justify-center">
+              {/* <div className="w-10 h-10 bg-teal rounded-xl flex items-center justify-center">
                 <span className="text-white font-serif font-bold text-xl">SS</span>
-              </div>
+              </div> */}
+              <>
+               <Link href="/" className="flex items-center gap-2">
+              <div className="w-10 h-10 bg-teal rounded-xl flex items-center justify-center overflow-hidden">
+              <img
+                src="/images/logo.png"   // change path to your actual logo
+                alt="SS Hospital Logo"
+                className="w-full h-full object-contain"
+              />
+            </div>
+            
+          </Link>
+              </>
               <div>
                 <p className="font-serif font-bold text-lg">SS Hospital</p>
                 <p className="text-xs text-white/70">Hosur</p>
@@ -162,6 +176,9 @@ export function Footer() {
           </div>
         </div>
       </div>
+
+
     </footer>
+    
   )
 }

@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { doctors, departments } from "@/lib/data"
+import Image from "next/image";
 
 export const metadata = {
   title: "Meet Our Doctors — SS Hospital Hosur",
@@ -58,7 +59,7 @@ export default function DoctorsPage() {
                       <img
                         src={doctor.image || "/placeholder.svg"}
                         alt={`${doctor.name} - ${doctor.specialty} at SS Hospital Hosur`}
-                        className="w-full h-64 object-cover"
+                        className="w-full h-64 object-fit"
                       />
                       <div className="absolute top-4 right-4">
                         <Badge className="bg-teal text-white">{dept?.name}</Badge>
@@ -108,10 +109,23 @@ export default function DoctorsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-charcoal">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-serif text-3xl font-bold text-white mb-4">Ready to Consult a Specialist?</h2>
-          <p className="text-white/80 max-w-xl mx-auto mb-8">
+      <section className="relative py-20 overflow-hidden bg-off-white">
+                  {/* Background Image */}
+                  <div className="absolute inset-0 z-0">
+                    <Image
+                      src="/images/hospitals/kafeel.png"
+                      alt="Hospital background"
+                      fill
+                      priority
+                      className="object-cover opacity-80"
+                    />
+          
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-white/60" />
+                  </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-charcoal mb-4">Ready to Consult a Specialist?</h2>
+          <p className="text-charcoal-light max-w-2xl mx-auto mb-8">
             Book an appointment with our expert doctors today and take the first step towards better health.
           </p>
           <Link href="/contact">

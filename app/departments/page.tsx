@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { departments } from "@/lib/data"
+import Image from "next/image"; 
 
 export const metadata = {
   title: "Departments — Joint Replacement, Orthopaedics & More | SS Hospital Hosur",
@@ -92,23 +93,36 @@ export default function DepartmentsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-charcoal">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-serif text-3xl font-bold text-white mb-4">Need Help Choosing a Department?</h2>
-          <p className="text-white/80 max-w-xl mx-auto mb-8">
+     <section className="relative py-20 overflow-hidden bg-off-white">
+             {/* Background Image */}
+             <div className="absolute inset-0 z-0">
+               <Image
+                 src="/images/hospitals/kafeel.png"
+                 alt="Hospital background"
+                 fill
+                 priority
+                 className="object-cover opacity-80"
+               />
+     
+               {/* Overlay */}
+               <div className="absolute inset-0 bg-white/60" />
+             </div>
+               <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-charcoal mb-4">Need Help Choosing a Department?</h2>
+          <p className="text-charcoal max-w-xl mx-auto mb-8 font-bold">
             Our team can help you find the right specialist for your needs. Book an appointment or call us.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
-              <Button size="lg" className="bg-coral hover:bg-coral-dark text-white rounded-xl w-full sm:w-auto">
+              <Button size="lg" className="bg-coral hover:bg-coral-dark text-charcoal rounded-xl w-full sm:w-auto">
                 Book Appointment
               </Button>
             </Link>
             <Link href="/doctors">
-              <Button
+             <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-charcoal rounded-xl w-full sm:w-auto bg-transparent"
+                className="border-teal text-teal hover:bg-teal hover:text-white rounded-xl text-lg px-8 w-full sm:w-auto bg-transparent"
               >
                 View All Doctors
               </Button>
