@@ -1,0 +1,332 @@
+import Link from "next/link"
+import {
+  Phone,
+  Calendar,
+  Clock,
+  Users,
+  Building,
+  Stethoscope,
+  Heart,
+  Baby,
+  FlaskConical,
+  Siren,
+  Video,
+  ArrowRight,
+  CheckCircle,
+} from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+
+const services = [
+  {
+    icon: Siren,
+    title: "Emergency Care",
+    description: "24/7 emergency services with rapid response teams and advanced life support.",
+    href: "/departments/emergency",
+  },
+  {
+    icon: Stethoscope,
+    title: "Outpatient Services",
+    description: "Comprehensive consultations with specialists across all departments.",
+    href: "/departments",
+  },
+  {
+    icon: FlaskConical,
+    title: "Diagnostics & Lab",
+    description: "State-of-the-art diagnostic imaging and pathology services.",
+    href: "/departments/diagnostics",
+  },
+  {
+    icon: Heart,
+    title: "Cardiology",
+    description: "Advanced cardiac care including angiography, PCI, and heart failure management.",
+    href: "/departments/cardiology",
+  },
+  {
+    icon: Baby,
+    title: "Maternity Care",
+    description: "Complete maternity services from prenatal care to delivery and postnatal support.",
+    href: "/departments/maternity",
+  },
+  {
+    icon: Video,
+    title: "Teleconsultation",
+    description: "Virtual consultations with our specialists from the comfort of your home.",
+    href: "/contact",
+  },
+]
+
+const stats = [
+  { icon: Clock, value: "15+", label: "Years of Service" },
+  { icon: Building, value: "100+", label: "Beds Capacity" },
+  { icon: Users, value: "50+", label: "Expert Doctors" },
+  { icon: Stethoscope, value: "24/7", label: "Emergency Care" },
+]
+
+const features = [
+  "Advanced Medical Equipment",
+  "Experienced Specialists",
+  "Patient-Centered Care",
+  "Affordable Treatment",
+  "Modern Facilities",
+  "Emergency Response",
+]
+
+export default function HomePage() {
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section with Parallax */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Parallax Background */}
+        <div
+          className="absolute inset-0 parallax"
+          style={{
+            backgroundImage: "url('/images/hospitals/kafeel.png')",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/70 to-charcoal/50" />
+
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+          <div className="max-w-3xl">
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight text-balance">
+              SS Hospital, Hosur — Compassionate Care. Modern Medicine.
+            </h1>
+            <p className="text-xl text-white/90 mb-8 leading-relaxed">
+              Multispeciality hospital delivering advanced treatments with a patient-first approach. Emergency care |
+              Expert doctors | 24/7 support.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/contact">
+                <Button
+                  size="lg"
+                  className="bg-coral hover:bg-coral-dark text-white rounded-xl text-lg px-8 w-full sm:w-auto"
+                >
+                  <Calendar className="h-5 w-5 mr-2" />
+                  Book an Appointment
+                </Button>
+              </Link>
+              <a href="tel:+91 94425 99330">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-white hover:bg-white hover:text-charcoal rounded-xl text-lg px-8 w-full sm:w-auto bg-transparent"
+                >
+                  <Phone className="h-5 w-5 mr-2" />
+                  Call Emergency
+                </Button>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="w-8 h-12 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
+            <div className="w-1.5 h-3 bg-white/50 rounded-full animate-pulse" />
+          </div>
+        </div>
+      </section>
+
+      {/* Intro Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="text-teal font-medium text-sm uppercase tracking-wider">Welcome to SS Hospital</span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-charcoal mt-3 mb-6 text-balance">
+                Your Trusted Healthcare Partner in Hosur
+              </h2>
+              <p className="text-charcoal-light leading-relaxed mb-6">
+                SS Hospital is a full-service multispeciality hospital in Hosur offering cardiac, orthopaedic,
+                maternity, and diagnostic care with round-the-clock emergency services. Our experienced team delivers
+                evidence-based treatment in a caring environment.
+              </p>
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                {features.map((feature) => (
+                  <div key={feature} className="flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-teal shrink-0" />
+                    <span className="text-sm text-charcoal">{feature}</span>
+                  </div>
+                ))}
+              </div>
+              <Link href="/about">
+                <Button className="bg-teal hover:bg-teal-dark text-white rounded-xl">
+                  Learn More About Us
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </Button>
+              </Link>
+            </div>
+            <div className="relative">
+              <img
+                src="/navy-medicine-uSvk2w9sMVs-unsplash (1).jpg"
+                alt="Doctor caring for patient at SS Hospital"
+                className="rounded-2xl shadow-xl"
+              />
+              <div className="absolute -bottom-6 -left-6 bg-coral text-white p-6 rounded-2xl shadow-lg">
+                <p className="font-serif text-3xl font-bold">15+</p>
+                <p className="text-sm">Years of Excellence</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 bg-off-white relative overflow-hidden">
+        {/* Subtle parallax background */}
+        <div className="absolute inset-0 opacity-5">
+          <div
+            className="absolute inset-0 parallax"
+            style={{
+              backgroundImage: "url('/abstract-medical-pattern.png')",
+            }}
+          />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <span className="text-teal font-medium text-sm uppercase tracking-wider">Our Services</span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-charcoal mt-3 mb-4 text-balance">
+              Comprehensive Healthcare Services
+            </h2>
+            <p className="text-charcoal-light max-w-2xl mx-auto">
+              From emergency care to specialized treatments, we offer a full range of medical services tailored to meet
+              your healthcare needs.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service, index) => (
+              <Card
+                key={service.title}
+                className="group bg-white border-0 shadow-md hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden animate-fade-in-up"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <CardContent className="p-6">
+                  <div className="w-14 h-14 bg-teal/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-teal group-hover:text-white transition-colors">
+                    <service.icon className="h-7 w-7 text-teal group-hover:text-white transition-colors" />
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-charcoal mb-2">{service.title}</h3>
+                  <p className="text-charcoal-light text-sm mb-4 leading-relaxed">{service.description}</p>
+                  <Link
+                    href={service.href}
+                    className="inline-flex items-center text-teal font-medium text-sm hover:text-teal-dark transition-colors"
+                  >
+                    Learn More
+                    <ArrowRight className="h-4 w-4 ml-1" />
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 bg-teal">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {stats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <stat.icon className="h-8 w-8 text-white" />
+                </div>
+                <p className="font-serif text-4xl font-bold text-white mb-1">{stat.value}</p>
+                <p className="text-white/80 text-sm">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Appointment Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-charcoal rounded-3xl overflow-hidden">
+            <div className="grid lg:grid-cols-2">
+              {/* Form */}
+              <div className="p-8 lg:p-12">
+                <span className="text-coral font-medium text-sm uppercase tracking-wider">Book Now</span>
+                <h2 className="font-serif text-3xl font-bold text-white mt-3 mb-6">Schedule Your Appointment</h2>
+                <form className="space-y-4">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <Input
+                      placeholder="Your Name"
+                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50 rounded-xl"
+                    />
+                    <Input
+                      placeholder="Phone Number"
+                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50 rounded-xl"
+                    />
+                  </div>
+                  <Select>
+                    <SelectTrigger className="bg-white/10 border-white/20 text-white rounded-xl [&>span]:text-white/50 [&>span]:data-[placeholder]:text-white/50">
+                      <SelectValue placeholder="Select Department" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="cardiology">Cardiology</SelectItem>
+                      <SelectItem value="orthopaedics">Orthopaedics</SelectItem>
+                      <SelectItem value="maternity">Maternity Care</SelectItem>
+                      <SelectItem value="diagnostics">Diagnostics</SelectItem>
+                      <SelectItem value="surgery">General Surgery</SelectItem>
+                      <SelectItem value="emergency">Emergency</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <Input type="date" className="bg-white/10 border-white/20 text-white rounded-xl" />
+                  <Button className="w-full bg-coral hover:bg-coral-dark text-white rounded-xl text-lg py-6">
+                    Book Appointment
+                  </Button>
+                </form>
+              </div>
+
+              {/* Image */}
+              <div className="relative hidden lg:block">
+                <img
+                  src="/friendly-hospital-reception-with-modern-interior.jpg"
+                  alt="Hospital reception"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-charcoal to-transparent" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-off-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-charcoal mb-4 text-balance">
+            Need Immediate Assistance?
+          </h2>
+          <p className="text-charcoal-light max-w-2xl mx-auto mb-8">
+            Our emergency team is available 24/7. Don't hesitate to reach out for any medical emergencies.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="tel:+9194425-99330">
+              <Button
+                size="lg"
+                className="bg-coral hover:bg-coral-dark text-white rounded-xl text-lg px-8 w-full sm:w-auto"
+              >
+                <Phone className="h-5 w-5 mr-2" />
+                Call Emergency Now
+              </Button>
+            </a>
+            <Link href="/doctors">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-teal text-teal hover:bg-teal hover:text-white rounded-xl text-lg px-8 w-full sm:w-auto bg-transparent"
+              >
+                Meet Our Doctors
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
