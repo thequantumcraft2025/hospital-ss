@@ -100,59 +100,104 @@ export default function AboutPage() {
         <div>
               <h3 className="text-2xl font-serif font-bold mb-4 text-center">Our Commitment</h3>
                 <p className="leading-relaxed text-center">
-                  To provide world-class compassionate healthcare to the Hosur region and become the most trusted name
-                  in medical excellence.
+                  At SS Hospital, Hosur, our commitment is rooted in a long-standing vision to deliver world-class, compassionate healthcare to the people of Hosur and surrounding regions. Founded with the purpose of providing ethical, reliable, and patient-focused medical care, SS Hospital has grown into a trusted center for orthopaedic and joint replacement treatments.
+                  <b>At SS Hospital, Hosur, our commitment is rooted in a long-standing vision to deliver world-class, compassionate healthcare to the people of Hosur and surrounding regions. Founded with the purpose of providing ethical, reliable, and patient-focused medical care, SS Hospital has grown into a trusted center for orthopaedic and joint replacement treatments.</b>
+                  <b>Over the years, we have continuously evolved by adopting modern medical practices, advanced surgical techniques, and a culture of empathy and integrity. Our focus has always remained the same — to place patients first, ensure safety at every step, and deliver clinical excellence with compassion.</b>
                 </p>
                 </div>
       </section>
 
       {/* Vision & Mission */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="border-0 shadow-lg bg-gradient-to-br from-primary to-primary/80 text-primary-foreground">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-serif font-bold mb-4">Our Vision</h3>
-                <p className="leading-relaxed">
-                  To provide world-class compassionate healthcare to the Hosur region and become the most trusted name
-                  in medical excellence.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="border-0 shadow-lg bg-gradient-to-br from-secondary to-secondary/80 text-secondary-foreground">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-serif font-bold mb-4">Our Mission</h3>
-                <p className="leading-relaxed">
-                  Deliver safe, accessible, and affordable healthcare using modern medicine, advanced technology, and
-                  kind, patient-centered care.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+     <section className="relative py-16 overflow-hidden">
+  {/* Background Image */}
+  {/* <img
+    src="/images/section-bg.png"
+    alt="Background"
+    className="absolute inset-0 w-full h-full object-cover"
+  /> */}
+
+  {/* Overlay for readability */}
+  <div className="absolute inset-0 bg-primary/10"></div>
+
+  {/* Content */}
+  <div className="relative container mx-auto px-4">
+    <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+      {/* Vision Card (UNCHANGED) */}
+      <Card className="border-0 shadow-lg bg-gradient-to-br from-primary to-primary/80 text-primary-foreground">
+        <CardContent className="p-8">
+          <h3 className="text-2xl font-serif font-bold mb-4">Our Vision</h3>
+          <p className="leading-relaxed">
+            To provide world-class compassionate healthcare to the Hosur region and become the most trusted name
+            in medical excellence.
+          </p>
+        </CardContent>
+      </Card>
+
+      {/* Mission Card (UNCHANGED) */}
+      <Card className="border-0 shadow-lg bg-gradient-to-br from-secondary to-secondary/80 text-secondary-foreground">
+        <CardContent className="p-8">
+          <h3 className="text-2xl font-serif font-bold mb-4">Our Mission</h3>
+          <p className="leading-relaxed">
+            Deliver safe, accessible, and affordable healthcare using modern medicine, advanced technology, and
+            kind, patient-centered care.
+          </p>
+        </CardContent>
+      </Card>
+
+    </div>
+  </div>
+</section>
 
       {/* History Timeline */}
-       <section className="py-20 bg-gradient-to-br from-slate-100 to-sky-200 rounded rounded-5">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-serif font-bold text-center text-foreground mb-12">Our Journey</h2>
-          <div className="max-w-3xl mx-auto">
-            {milestones.map((milestone, index) => (
-              <div key={index} className="flex gap-6 mb-8 last:mb-0">
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                    <span className="text-primary font-bold">{milestone.year}</span>
-                  </div>
-                  {index < milestones.length - 1 && <div className="w-0.5 h-full bg-primary/20 mt-2" />}
-                </div>
-                <div className="pt-4">
-                  <p className="text-foreground">{milestone.event}</p>
-                </div>
-              </div>
-            ))}
+       <section className="relative py-20 overflow-hidden rounded-5">
+  {/* Background Video */}
+  <video
+    className="absolute inset-0 w-full h-full object-cover"
+    autoPlay
+    loop
+    muted
+    playsInline
+    preload="auto"
+  >
+    <source src="/videos/beat.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  {/* Dark overlay for readability */}
+  <div className="absolute inset-0 bg-black/50"></div>
+
+  {/* Content */}
+  <div className="relative container mx-auto px-4">
+    <h2 className="text-3xl font-serif font-bold text-center text-white mb-12">
+      Our Journey
+    </h2>
+
+    <div className="max-w-3xl mx-auto">
+      {milestones.map((milestone, index) => (
+        <div key={index} className="flex gap-6 mb-8 last:mb-0">
+          <div className="flex flex-col items-center">
+            <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur flex items-center justify-center">
+              <span className="text-white font-bold">
+                {milestone.year}
+              </span>
+            </div>
+
+            {index < milestones.length - 1 && (
+              <div className="w-0.5 h-full bg-white/30 mt-2" />
+            )}
+          </div>
+
+          <div className="pt-4">
+            <p className="text-white/90">
+              {milestone.event}
+            </p>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
      
 
 

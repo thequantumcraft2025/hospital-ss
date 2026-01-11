@@ -307,25 +307,41 @@ export default function HomePage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-teal">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <stat.icon className="h-8 w-8 text-white" />
-                </div>
+      <section className="relative py-16 overflow-hidden">
+  {/* Background Video */}
+ <video
+  className="absolute inset-0 w-full h-full object-cover"
+  autoPlay
+  loop
+  muted
+  playsInline
+  preload="auto"
+>
+  <source src="/videos/dna.mp4" type="video/mp4" />
+</video>
 
-                <p className="font-serif text-4xl font-bold text-white mb-1">
-                  <CountUp value={stat.value} suffix={stat.suffix} />
-                </p>
+  {/* Overlay for readability */}
+  <div className="absolute inset-0 bg-black/50"></div>
 
-                <p className="text-white/80 text-sm">{stat.label}</p>
-              </div>
-            ))}
+  {/* Content */}
+  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      {stats.map((stat) => (
+        <div key={stat.label} className="text-center">
+          <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+            <stat.icon className="h-8 w-8 text-white" />
           </div>
+
+          <p className="font-serif text-4xl font-bold text-white mb-1">
+            <CountUp value={stat.value} suffix={stat.suffix} />
+          </p>
+
+          <p className="text-white/80 text-sm">{stat.label}</p>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Appointment Section */}
       <section className="py-20 bg-gradient-to-br from-slate-100 to-sky-200 rounded rounded-5">
