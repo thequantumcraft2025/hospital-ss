@@ -78,10 +78,10 @@ export default function AboutPage() {
               </div>
             </div>
             <div>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Doctor.Mr. Srineevasa Gowda</h2>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Doctor.Mr. V. Sreenivasa Gowda</h2>
               <p className="text-primary font-medium text-lg mb-4">M.B.B.S, D. Ortho., DNB, MNAMS, MCH-Ortho</p>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                With over 25+ of experience in healthcare administration, Mr. Srineevasa Gowda founded SS
+                With over 25+ of experience in healthcare administration, Mr. V. Sreenivasa Gowda founded SS
                 Hospital with a singular mission — to bring world-class medical care to Hosur and surrounding regions.
                 His unwavering commitment to patient welfare and clinical excellence has transformed SS Hospital into a
                 trusted multispeciality institution serving thousands of families.

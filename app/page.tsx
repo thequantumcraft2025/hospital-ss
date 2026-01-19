@@ -226,7 +226,7 @@ export default function HomePage() {
                 className="rounded-2xl shadow-xl"
               />
               <div className="absolute -bottom-6 -left-6 bg-coral text-white p-6 rounded-2xl shadow-lg">
-                <p className="font-serif text-3xl font-bold">15+</p>
+                <p className="font-serif text-3xl font-bold">25+</p>
                 <p className="text-sm">Years of Excellence</p>
               </div>
             </div>

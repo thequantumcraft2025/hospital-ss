@@ -120,7 +120,7 @@ export default function ContactPage() {
       {/* MAP */}
       <section className="h-[450px] w-full">
         <iframe
-          src="https://www.google.com/maps?q=Hosur&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          src="https://www.google.com/maps?q=12.7411378,77.8185751&z=17&output=embed"
           className="w-full h-full border-0"
           loading="lazy"
         />
